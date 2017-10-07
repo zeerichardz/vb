@@ -1,0 +1,23 @@
+Public Class Form1
+
+    Private Sub btnCompare_Click(sender As Object, e As EventArgs) Handles btnCompare.Click
+        Dim intOne As Integer
+        Dim intTwo As Integer
+
+        If Integer.TryParse(txtIntOne.Text, intOne) And Integer.TryParse(txtIntTwo.Text, intTwo) Then
+            If intOne > intTwo Then
+                lblResult.Text = "The first number is larger."
+            ElseIf intTwo > intOne Then
+                lblResult.Text = "The second number is larger."
+            Else
+                lblResult.Text = "The two numbers are equal."
+            End If
+        Else
+            lblResult.Text = "Please enter in valid numbers."
+        End If
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        Me.Close() 'closes the form
+    End Sub
+End Class
