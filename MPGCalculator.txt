@@ -1,0 +1,27 @@
+Public Class Form1
+    Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click
+
+        Try
+            Dim decMiles As Decimal = CDec(txtMiles.Text) 'converts txtMiles to decimal
+            Dim decGallons As Decimal = CDec(txtGallons.Text) 'converts txtGallons to decimal
+            Dim decMilesPerGallon As Decimal = CDec(decMiles / decGallons) 'divides them both
+
+            lblResult.Text = "Your car has " & decMilesPerGallon.ToString("N") & " miles per gallon." '"N" makes it two dec places
+        Catch 'if invalid/no numbers entered
+            MessageBox.Show("Please enter in valid numbers.")
+        End Try
+
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        txtGallons.Text = String.Empty
+        txtMiles.Text = String.Empty
+        lblResult.Text = String.Empty 'empties out all text boxes and pertinent labels
+
+        txtMiles.Focus() 'returns focus to top text box
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        Me.Close()
+    End Sub
+End Class
