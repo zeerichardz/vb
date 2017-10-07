@@ -1,0 +1,36 @@
+Public Class Form1
+    Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click
+        Const dblCALORIES_PER_FAT_GRAM As Double = 9 'calories in a gram of fat
+        Dim dblCalories As Double
+        Dim dblFat As Double
+        Dim dblFatCalories As Double
+        Dim dblFatPercent As Double
+
+        'if output validates as doubles
+        If Double.TryParse(txtCalories.Text, dblCalories) And Double.TryParse(txtFat.Text, dblFat) Then
+            dblFatCalories = dblFat * dblCALORIES_PER_FAT_GRAM 'calories in the grams of fat
+            dblFatPercent = dblFatCalories / dblCalories 'what percent of calories is made up of fat
+
+            If (dblFatPercent < 0.3) Then
+                lblResult.Text = dblFatPercent.ToString("p") 'fat percent in percentage format
+                lblIsLowFat.Text = "This food is low in fat."
+            Else
+                lblResult.Text = dblFatPercent.ToString("p") 'fat percent in percentage format
+            End If
+        Else
+            lblResult.Text = "Please enter in valid numbers."
+        End If
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        lblResult.Text = ""
+        lblIsLowFat.Text = ""
+        txtCalories.Text = String.Empty
+        txtFat.Text = String.Empty
+        txtCalories.Focus()
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        Me.Close()
+    End Sub
+End Class
