@@ -1,0 +1,62 @@
+Public Class Form1
+    Private Sub btnCalc_Click(sender As Object, e As EventArgs) Handles btnCalc.Click
+
+        Const dblREVENUE_PERCENTAGE As Double = 0.2
+
+        'converts user input strings to doubles
+        Dim dblAdultTixPrice As Double = CDbl(txtAdultTixPrice.Text)
+        Dim dblChildTixPrice As Double = CDbl(txtChildTixPrice.Text)
+        Dim dblAdultTixSold As Double = CDbl(txtAdultTixSold.Text)
+        Dim dblChildTixSold As Double = CDbl(txtChildTixSold.Text)
+
+        'calculation variables
+        Dim dblGrossAdultRevenue As Double
+        Dim dblNetAdultRevenue As Double
+        Dim dblGrossChildRevenue As Double
+        Dim dblNetChildRevenue As Double
+        Dim dblTotalGrossRevenue As Double
+        Dim dblTotalNetRevenue As Double
+
+        'attempts to perform calculations if numbers are valid
+        Try
+            'all calculations to determine gross and net revenues
+            dblGrossAdultRevenue = dblAdultTixPrice * dblAdultTixSold
+            dblNetAdultRevenue = dblGrossAdultRevenue * dblREVENUE_PERCENTAGE
+            dblGrossChildRevenue = dblChildTixPrice * dblChildTixSold
+            dblNetChildRevenue = dblGrossChildRevenue * dblREVENUE_PERCENTAGE
+            dblTotalGrossRevenue = dblGrossAdultRevenue + dblGrossChildRevenue
+            dblTotalNetRevenue = dblNetAdultRevenue + dblNetChildRevenue
+
+            'sets labels to gross and net revenues in currency format
+            lblGrossRevAdultDbl.Text = dblGrossAdultRevenue.ToString("c")
+            lblGrossChildRevDbl.Text = dblGrossChildRevenue.ToString("c")
+            lblNetRevAdultDbl.Text = dblNetAdultRevenue.ToString("c")
+            lblNetChildRevDbl.Text = dblNetChildRevenue.ToString("c")
+            lblTotalGrossRevDbl.Text = dblTotalGrossRevenue.ToString("c")
+            lblTotalNetRevDbl.Text = dblTotalNetRevenue.ToString("c")
+
+        Catch ex As Exception
+            MessageBox.Show("Please enter in valid numbers.") 'shows if user enters in invalid data
+        End Try
+    End Sub
+
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        'clears all labels and text boxes, returns focus to first text box
+        txtAdultTixPrice.Clear()
+        txtAdultTixSold.Clear()
+        txtChildTixPrice.Clear()
+        txtChildTixSold.Clear()
+        lblNetChildRevDbl.Text = ""
+        lblNetRevAdultDbl.Text = ""
+        lblGrossRevAdultDbl.Text = ""
+        lblGrossChildRevDbl.Text = ""
+        lblTotalGrossRevDbl.Text = ""
+        lblTotalNetRevDbl.Text = ""
+        txtAdultTixPrice.Focus()
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        Me.Close()
+    End Sub
+End Class
